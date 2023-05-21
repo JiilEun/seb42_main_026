@@ -1,0 +1,132 @@
+import styled from 'styled-components';
+import StatusChips from '../../components/StatusChips';
+import Tags from '../../components/Tags';
+import { ReactComponent as ICON_LIKE } from '../../assets/ic_boardItem_like.svg';
+import { ReactComponent as ICON_ANSWER } from '../../assets/ic_boardItem_answer.svg';
+
+interface ItemProps {
+  title: string;
+  createdAt: string;
+  likeCount: number;
+  answerCount: number;
+  nickname?: string;
+  tag?: string;
+  children?: React.ReactNode;
+  questionStatus: string;
+}
+export default function BoardItem({ title, createdAt, likeCount, answerCount, nickname, tag, children, questionStatus }: ItemProps) {
+  return (
+    <BoardItemStyle>
+      <ItemTop>
+        <ItemTitleform>
+          <ItemTitle>{title.length >= 15 ? `${title.slice(0, 17)}...` : title}</ItemTitle>
+          <ItemDate>{createdAt}</ItemDate>
+        </ItemTitleform>
+        <ItemCountForm>
+          <ItemLikeForm>
+            <ICON_LIKE stroke="#ABAEB4" fill="none" />
+            {likeCount}
+          </ItemLikeForm>
+          <ItemAnswerForm>
+            <ICON_ANSWER />
+            {answerCount}
+          </ItemAnswerForm>
+        </ItemCountForm>
+      </ItemTop>
+      <ItemBottom>
+        <ItemChipForm>
+          <StatusChips color={questionStatus === '갱생 중' ? 'pink' : 'gray'} />
+          <Tags title={tag} size="small"></Tags>
+        </ItemChipForm>
+        <ItemNickname>{nickname}</ItemNickname>
+      </ItemBottom>
+      {children}
+    </BoardItemStyle>
+  );
+}
+
+const BoardItemStyle = styled.div`
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: solid 0.5px var(--color-gray03);
+  padding: 10px 6px;
+`;
+
+const ItemTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  padding-top: 5px;
+`;
+
+const ItemTitleform = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+
+const ItemTitle = styled.div`
+  font-size: var(--font-size16);
+  letter-spacing: var(--font-spacing-title);
+  max-width: 210px;
+  padding: 0px;
+  height: 23px;
+  overflow: hidden;
+`;
+
+const ItemDate = styled.div`
+  font-size: var(--font-size12);
+  letter-spacing: var(--font-spacing-title);
+  color: var(--color-gray02);
+  font-family: 'Roboto';
+`;
+
+const ItemCountForm = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+`;
+
+const ItemLikeForm = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--color-gray02);
+  font-size: var(--font-size12);
+  font-family: 'Roboto';
+`;
+
+const ItemAnswerForm = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-gray02);
+  font-size: var(--font-size12);
+  font-family: 'Roboto';
+`;
+
+const ItemBottom = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  padding-bottom: 8px;
+`;
+
+const ItemChipForm = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+`;
+
+const ItemNickname = styled.div`
+  font-size: var(--font-size12);
+  letter-spacing: var(--font-spacing-title);
+  color: var(--color-gray01);
+`;
