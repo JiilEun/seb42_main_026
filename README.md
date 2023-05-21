@@ -1,6 +1,6 @@
 <div align="center"> 
 
-![readme](https://user-images.githubusercontent.com/116049579/228496469-54e0027d-383d-474a-81db-df84e8dbb7ee.png) 
+![readme](https://user-images.githubusercontent.com/94615294/238351293-77e6509a-46c8-412f-a76a-9a5b36f97e02.png) 
 
 <br/>
 <br/>
